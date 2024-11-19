@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Minecraft Server Landing Page</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Подключаем CSS файл -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <style>
+    #scrollUp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #39ff14; /* Цвет фона */
+      border: none; /* Убираем стандартную рамку */
+      border-radius: 50%; /* Делаем круглый */
+      width: 50px; /* Ширина */
+      height: 50px; /* Высота */
+      display: flex; /* Центрируем стрелку */
+      justify-content: center; /* Центрируем стрелку */
+      align-items: center; /* Центрируем стрелку */
+      cursor: pointer; /* Указатель при наведении */
+      z-index: 1000; /* Слой над другими элементами */
+      transition: opacity 0.3s ease; /* Плавное исчезновение */
+      opacity: 0; /* Скрыто по умолчанию */
+      pointer-events: none; /* Убираем события указателя, когда кнопка скрыта */
+    }
+
+    #scrollUp img {
+      width: 30px; /* Ширина изображения */
+      height: 30px; /* Высота изображения */
+    }
+
+    /* Стиль для видимости кнопки */
+    #scrollUp.show {
+      opacity: 1; /* Показать кнопку */
+      pointer-events: auto; /* Включаем события указателя */
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Кнопка-гамбургер -->
+  <div class="hamburger" id="hamburger">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <!-- Навигационное меню -->
+  <div class="navbar" id="navbar">
+    <a href="#home">Home</a>
+    <a href="#description">Description</a>
+    <a href="#rules">Rules</a>
+    <a href="#contact">Contact</a>
+    <a href="#access-form">Get Access</a>
+  </div>
+
+  <!-- Первая секция (Главная) -->
+  <div class="section" id="home">
+    <div class="container">
+      <h1>Minecraft Server</h1>
+      <p>Join the most toxic and thrilling Minecraft server experience. Our community is full of adventurous players who are eager to share their passion for building and battling. Whether you are a seasoned player or new to the game, there is something for everyone here. Come and explore the vast landscapes, engage in epic battles, and collaborate with others to create unforgettable memories.</p>
+      <a href="#access-form" class="btn">Get Access</a>
+    </div>
+  </div>
+
+  <!-- Вторая секция (Описание сервера) -->
+  <div class="section" id="description">
+    <div class="container">
+      <h1>Why Join Us?</h1>
+      <p>Our server offers the best PvP, survival, and creative modes with a unique toxic twist. Experience intense competition and exciting challenges while making new friends. We pride ourselves on providing a welcoming environment for players of all skill levels. With custom plugins and frequent events, there’s never a dull moment. Join us today and become a part of our ever-growing family!</p>
+    </div>
+  </div>
+
+  <!-- Третья секция (Правила сервера) -->
+  <div class="section" id="rules">
+    <div class="container">
+      <h1>Server Rules</h1>
+      <p>Please follow the rules to ensure a fun experience for everyone:</p>
+      <ul>
+        <li>No cheating or hacks.</li>
+        <li>Respect other players.</li>
+        <li>No griefing or destroying others' builds.</li>
+        <li>Keep chat friendly and avoid offensive language.</li>
+        <li>Report any issues to the moderators immediately.</li>
+      </ul>
+      <p>By adhering to these rules, you help us maintain a positive environment where everyone can enjoy their time on the server!</p>
+    </div>
+  </div>
+
+  <!-- Четвертая секция (Контакты) -->
+  <div class="section" id="contact">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>If you have any questions, feel free to reach out to us on social media or via email. We’re always here to help and want to make your experience as enjoyable as possible. Don’t hesitate to send us your feedback or suggestions!</p>
+    </div>
+  </div>
+
+  <!-- Пятая секция (Форма для получения доступа) -->
+  <div class="section" id="access-form">
+    <div class="container">
+      <h1>Get Access to the Server</h1>
+      <div class="form-container">
+        <form action="#">
+          <input type="text" name="username" placeholder="Enter your Minecraft username" required>
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <input type="submit" value="Request Access">
+        </form>
+      </div>
+      <p>Once you submit your request, our team will review it and get back to you as soon as possible. We look forward to having you on our server!</p>
+    </div>
+  </div>
+
+  <!-- Кнопка "стрелка вверх" -->
+  <div id="scrollUp"><img src="1.png" alt="Scroll to top" /></div>
+
+  <script src="script.js"></script> <!-- Подключаем JavaScript файл -->
+  
+  <script type="text/javascript">
+    $(function() {
+      $(window).scroll(function() {
+        if ($(this).scrollTop() != 0) {
+          $('#scrollUp').fadeIn().addClass('show');
+        } else {
+          $('#scrollUp').fadeOut().removeClass('show');
+        }
+      });
+      $('#scrollUp').click(function() {
+        $('body,html').animate({ scrollTop: 0 }, 700);
+      });
+    });
+  </script>
+  
+  <!-- Секция с информацией внизу сайта -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>Сделано вашим именем</p>
+      <p>Контакт: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+      <p>
+        <a href="https://t.me/your_telegram_channel" target="_blank">Телеграм-канал</a> |
+        <a href="https://vk.com/your_vk_group" target="_blank">ВК-группа</a>
+      </p>
+    </div>
+  </footer>
+  
+</body>
+</html>
+

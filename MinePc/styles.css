@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    color: #39ff14;
+    font-family: 'Courier New', Courier, monospace;
+    perspective: 1000px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(57, 255, 20, 0.3), transparent 70%),
+                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.3), transparent 70%);
+    animation: pulseGradient 12s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes pulseGradient {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Меню */
+.navbar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 1rem;
+    z-index: 1;
+    display: none; /* Скрыто по умолчанию */
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    overflow: hidden; 
+    max-height: 0; /* Начальная высота для скрытого состояния */
+}
+
+.navbar a {
+    color: #39ff14;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: rgba(57, 255, 20, 0.3);
+}
+
+.navbar.menu-open {
+    display: block; 
+    max-height: 500px; /* Устанавливаем максимальную высоту */
+    opacity: 1;
+}
+
+.navbar:not(.menu-open) {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Кнопка-гамбургер */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 10; 
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform 0.5s;
+}
+
+.line {
+    width: 30px;
+    height: 3px;
+    background-color: #39ff14;
+    transition: all 0.3s;
+}
+
+.menu-open {
+    display: block;
+}
+
+.hamburger.menu-open .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.menu-open .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.menu-open .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Секции */
+.section {
+    padding: 5rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    border-bottom: 2px solid #39ff14;
+    transform: translateZ(0);
+    transition: transform 1s ease-out;
+}
+
+.container {
+    text-align: center;
+    max-width: 900px;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    overflow-wrap: break-word;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: 2px solid #39ff14;
+    color: #000;
+    background-color: #39ff14;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #000;
+    color: #39ff14;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 400px;
+    background: black;
+    border: 2px solid #39ff14;
+    color: #39ff14;
+    font-size: 1rem;
+}
+
+input[type="submit"] {
+    background-color: #39ff14;
+    color: #000;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #000;
+    color: #39ff14;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Расположение кнопки внизу */
+    right: 20px; /* Расположение кнопки справа */
+    background-color: #39ff14; /* Зеленый цвет */
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 50%; /* Делаем круглый */
+    width: 50px; /* Ширина */
+    height: 50px; /* Высота */
+    display: flex; /* Центрируем стрелку */
+    justify-content: center; /* Центрируем стрелку */
+    align-items: center; /* Центрируем стрелку */
+    cursor: pointer; /* Указатель при наведении */
+    z-index: 1000; /* Слой над другими элементами */
+    transition: opacity 0.3s ease; /* Плавное исчезновение */
+    opacity: 0; /* Скрыто по умолчанию */
+    pointer-events: none; /* Убираем события указателя, когда кнопка скрыта */
+}
+
+/* Стрелка */
+.scroll-to-top::before {
+    content: '';
+    border: solid #39ff14; /* Зеленая стрелка */
+    border-width: 0 2px 2px 0; /* Создание стрелки */
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg); /* Поворачиваем стрелку */
+}
+
+/* Стиль для видимости кнопки */
+.scroll-to-top.show {
+    opacity: 1; /* Показать кнопку */
+    pointer-events: auto; /* Включаем события указателя */
+}
+
+.scroll-to-top:hover {
+    background-color: black; /* Черный цвет при наведении */
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.8); /* Цвет фона футера */
+    color: #39ff14; /* Цвет текста */
+    padding: 20px; /* Отступы */
+    text-align: center; /* Выравнивание по центру */
+    position: relative; /* Чтобы футер не перекрывал контент */
+}
+
+.footer a {
+    color: #39ff14; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+
+
+
+/* Адаптация для планшетов и небольших экранов */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    .footer {
+        padding: 15px; /* Уменьшаем отступы */
+    }
+
+    .footer p {
+        font-size: 0.9rem; /* Уменьшаем размер шрифта */
+    }
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .section {
+        padding: 3rem 1rem;
+    }
+    .footer {
+        padding: 10px; /* Уменьшаем отступы еще больше */
+    }
+
+    .footer p {
+        font-size: 0.8rem; /* Еще меньше размер шрифта */
+    }
+
+    .footer a {
+        display: block; /* Переключаем ссылки на блочный элемент для лучшего восприятия */
+        margin: 5px 0; /* Добавляем отступ между ссылками */
+    }
+}
